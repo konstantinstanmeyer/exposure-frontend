@@ -1,6 +1,18 @@
 import Link from "next/link"
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 export default function HomePage(){
+  const [userId, setUserId] = useState(undefined);
+
+  useEffect(() => {
+    axios.post('http://localhost:3001/')
+  }, [])
+
+  const handleSignupClick = () => {
+    
+  }
+
   return(
     <div className="h-screen flex flex-col relative">
       <nav className="h-20 flex flex-row items-center w-full border-b-2 dark:border-gray-800 border-gray-300">
@@ -18,7 +30,9 @@ export default function HomePage(){
             <div className="w-[0.12rem] h-6 bg-gray-600" />
             <img className="w-5 mx-auto invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all" src="library.png" />
             <div className="w-[0.12rem] h-6 bg-gray-600" />
-            <img className="w-5 mx-auto invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all " src="profile.png" />
+            <Link href="/signup">
+              <img className="w-5 mx-auto invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all " src="profile.png" />
+            </Link>
           </div>
         </div>
       </nav>
@@ -49,7 +63,7 @@ export default function HomePage(){
           </div>
         </div>
         <div className="w-4/5 h-full">
-
+        
         </div>
       </div>
     </div>
