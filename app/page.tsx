@@ -1,13 +1,36 @@
+"use client"
+
 import Link from "next/link"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from 'axios';
 
 export default function HomePage(){
-  const [userId, setUserId] = useState(undefined);
 
   useEffect(() => {
-    axios.post('http://localhost:3001/')
+    // axios.post('http://localhost:3001/signup', {
+    //   email: "asdoiajsd",
+    //   password: "iuahhf"
+    // })
+    // .then(res => {
+    //   console.log(res);
+    // })
+    // .catch(err => console.log(err));
+    (
+      async () => {
+        axios.post('http://localhost:3001/login', {
+          email: "asdoiajsd",
+          password: "iuahhf"
+        })
+        .then(res => {
+          console.log(res);
+          localStorage.setItem('token', res.data.token);
+        })
+        .catch(err => console.log(err));
+      }
+    )();
   }, [])
+
+  
 
   const handleSignupClick = () => {
     
@@ -30,8 +53,8 @@ export default function HomePage(){
             <div className="w-[0.12rem] h-6 bg-gray-600" />
             <img className="w-5 mx-auto invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all" src="library.png" />
             <div className="w-[0.12rem] h-6 bg-gray-600" />
-            <Link href="/signup">
-              <img className="w-5 mx-auto invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all " src="profile.png" />
+            <Link className="w-5 mx-auto" href="/signup">
+              <img className="invert-[.45] hover:invert-[.65] hover:cursor-pointer transition-all " src="profile.png" />
             </Link>
           </div>
         </div>
