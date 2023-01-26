@@ -4,6 +4,8 @@ import Link from "next/link"
 import { useEffect } from "react";
 import axios from 'axios';
 
+const database = process.env.BASE_URL;
+
 export default function HomePage(){
 
   useEffect(() => {
@@ -15,19 +17,36 @@ export default function HomePage(){
     //   console.log(res);
     // })
     // .catch(err => console.log(err));
+    
+    // async () => {
+    //   axios.post("http://localhost:3001/login", {
+    //     email: "asdoiajsd",
+    //     password: "iuahhf"
+    //   }, { headers: { "Authorization": "Bearer " + localStorage.getItem('token')}})
+    //   .then(res => {
+    //     console.log(res);
+    //     localStorage.setItem('token', res.data.token);
+    //     localStorage.setItem('userId', res.data.userId);
+    //   })
+    //   .catch(err => console.log(err));
+    // }
+
     (
       async () => {
-        axios.post('http://localhost:3001/login', {
-          email: "asdoiajsd",
-          password: "iuahhf"
-        })
+        axios.post("http://localhost:3001/post", {
+          genre: "asdoiajsd",
+          category: "iuahhf",
+        }, { headers: { "Authorization": "Bearer " + localStorage.getItem('token')}})
         .then(res => {
           console.log(res);
-          localStorage.setItem('token', res.data.token);
+          // localStorage.setItem('token', res.data.token);
+          // localStorage.setItem('userId', res.data.userId);
         })
         .catch(err => console.log(err));
       }
     )();
+
+    // { headers: { "Authorization": "Bearer " + localStorage.getItem('token')}}
   }, [])
 
   
