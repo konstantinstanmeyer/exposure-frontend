@@ -4,7 +4,7 @@ import axios from 'axios';
 const token = localStorage.getItem('token') as string | null;
 const username: String | null = localStorage.getItem('username');
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:3001/'
 
 interface authSliceState {
     username: String | null,
