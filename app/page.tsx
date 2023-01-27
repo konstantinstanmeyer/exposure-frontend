@@ -1,13 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import axios from 'axios';
 
-const database = process.env.BASE_URL;
-
 export default function HomePage(){
-  
+  const userRef = useRef(false);
+
+  console.log(userRef.current)
 
   useEffect(() => {
     // axios.post('http://localhost:3001/signup', {
@@ -34,16 +34,15 @@ export default function HomePage(){
 
     (
       async () => {
-        axios.post("http://localhost:3001/post", {
-          genre: "asdoiajsd",
-          category: "iuahhf",
-        }, { headers: { "Authorization": "Bearer " + localStorage.getItem('token')}})
-        .then(res => {
-          console.log(res);
-          // localStorage.setItem('token', res.data.token);
-          // localStorage.setItem('userId', res.data.userId);
-        })
-        .catch(err => console.log(err));
+        try {
+          const response = await axios.post("http://localhost:3001/post", {
+            genre: "asdoiajsd",
+            category: "iuahhf",
+          }, { headers: { "Authorization": "Bearer " + localStorage.getItem('token')}});
+          console.log(response)
+        }catch(e){
+          console.log(e);
+        }
       }
     )();
 
