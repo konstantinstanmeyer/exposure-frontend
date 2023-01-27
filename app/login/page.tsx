@@ -1,14 +1,17 @@
 "use client"
-import { useEffect, useState, SyntheticEvent } from "react"
+import { useEffect, useState, SyntheticEvent } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 export default function LoginPage(){
     const [email, setEmail] = useState<String>("");
     const [password, setPassword] = useState<String>("");
     const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [isLogged, setIsLogged] = useState<Boolean>(false);
 
-    useEffect(() => {
+    const isLogged = useSelector((state) => state.status)
+
+    const handleSubmit = (e: SyntheticEvent) => {
+        e.preventDefault();
         setIsLoading(true);
         axios.post('http://localhost:3001/login', {
           email: "asdoiajsd",
@@ -17,22 +20,8 @@ export default function LoginPage(){
         .then(res => {
           console.log(res);
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('username', res.data.username);
           setIsLoading(false);
-        })
-        .catch(err => console.log(err));
-    }, [])
-
-    const handleSubmit = (e: SyntheticEvent) => {
-        e.preventDefault();
-
-        axios.post('http://localhost:3001/login', {
-          email: "asdoiajsd",
-          password: "iuahhf"
-        })
-        .then(res => {
-          console.log(res);
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('userId', res.data.user._id);
         })
         .catch(err => console.log(err));
     }
