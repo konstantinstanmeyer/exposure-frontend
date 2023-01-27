@@ -2,10 +2,13 @@
 
 import Link from "next/link"
 import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import axios from 'axios';
 
 export default function HomePage(){
   const userRef = useRef(false);
+
+  console.log(useSelector((state) => state.auth))
 
   console.log(userRef.current)
 

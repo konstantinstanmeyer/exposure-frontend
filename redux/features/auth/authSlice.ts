@@ -46,8 +46,9 @@ export const authSlice = createSlice({
 
         },
     },
-    extraReducers(builder){
-        builder.addCase(postAuth.pending, (state))
-    }
+    // extraReducers(builder){
+    //     builder.addCase(postAuth.pending, (state))
+    // }
 })
 
+export default authSlice.reducer;
